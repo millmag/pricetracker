@@ -1,0 +1,70 @@
+﻿{% extends "app/layout.html" %}
+{% load static %}
+{% block content %}
+        {% if product is none %} 
+        <div id = "search-results">
+                <div id="card">
+                    <div id="card-header">
+                        <h1 class="location">Please Search Your Location Above</h1>
+                       
+                    </div>
+                    <div id="card-body">
+                        <h3>Power Schedule As Advised by ZESA</h3>
+                        <table style="width:90%">
+                            <tr>
+                                <th>Day</th>
+                                <th>Peak</th>
+                            </tr>
+                            <tr>
+                                <td>Mon-Fri</td>
+                                <td>?</td>
+                            </tr>
+        
+                        </table>
+                    </div>
+                    <div id="card-footer">
+                        <h6>Key</h6>
+                        <h6>AM: No Electricity Between 6:00am and 1:00pm</h6>
+                        <h6>PM: No Electricity Between 1:00pm and 8:00pm</h6>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+        <div id = "search-results">
+                <div id="card">
+                    <div id="card-header">
+                        <h1 class="location">{{product}}</h1>
+                        <h6 class="area-code">Area Code: </h6>
+                    </div>
+                    <div id="card-body">
+                        <h3>Power Schedule</h3>
+                        <table style="width:90%">
+                            <tr>
+                                <th>Day</th>
+                                <th>Peak</th>
+                            </tr>
+                            
+                            {% for ptracker in ptracker %}
+                            <tr>
+                                
+                                <th>
+                                    {{ ptracker.pname}}
+                                </th>   
+                                <th>
+                                {{ ptracker.sname }}
+                                </th>
+                            
+                            </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+                    <div id="card-footer">
+                        <h6>Key</h6>
+                        <h6>AM: No Electricity Between 6:00am and 1:00pm</h6>
+                        <h6>PM: No Electricity Between 1:00pm and 8:00pm</h6>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+     
+{% endblock %}
